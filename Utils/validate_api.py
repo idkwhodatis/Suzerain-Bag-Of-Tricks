@@ -16,7 +16,7 @@ for i, ln in enumerate(lines, 1):
         if set(ln.strip("|").replace(" ", "")) <= set("|-:"):
             continue
         cells = ln.split("|")
-        if "| Field |" in ln or "| Key |" in ln or "| Change |" in ln or "| # |" in ln:
+        if "| Field |" in ln or "| Key |" in ln or "| Change |" in ln or "| # |" in ln or "| Group |" in ln:
             expected = len(cells)
             continue
         if len(cells) != expected:

@@ -55,10 +55,19 @@ Never commit full decompiled game code.
 
 ## 5. Catalog format (`Agents/API.md`)
 
-`| Field | Key | Notes |` per UI group, plus an Ungrouped section and a
-Changelog table. Seed rows come from FIELD_MAP; append newly discovered
-keys with dump reference (class/method, not pasted code), then regenerate
-via `Utils/gen_api.py`. Mark unconfirmed rows via the file's status header
+`## Sordland` / `## Rizia`: save-editor mapped groups first (`| Field |
+Key | Notes |`), then themed extras subgroups (`| Key | Evidence |`):
+Money & Resources, Economy, Opinion & Relations, Votes & Reform, Factions,
+Decrees & Bills, Diplomacy & Foreign Policy, Military & War, Law & Order,
+Decisions & Enactments, Situations, Story & Endings, Characters & Houses,
+Other. Then `## Shared reference` (story gates, world mirrors, vote
+counters, war setup, decree UI, database-only), known-issues, Changelog.
+`Utils/groups.json` (hand source: 39 modify-together groups ported from
+save-editor model semantics — and-pairs, exclusive enums, inverse war pair,
+Rizia compensating totals) renders `## Modify-together groups` and per-row
+`Group:` notes on mapped rows.
+Seed rows come from FIELD_MAP; extras/regeneration via `Utils/gen_api.py`.
+Mark unconfirmed rows via the file's status header
 until confirmed live; stamp the pinned game version in the Changelog.
 
 ## 6. Save-editor cross-reference
@@ -107,3 +116,13 @@ live in `REPO`/`CONSTS` constants — edit when moving machines.
     -1000000000 live vs -999999999 in DB.
 11. `Utils/validate_api.py` — structural gate over `Agents/API.md`
     (column counts per table, stray-marker scan). Run after every regen.
+12. `Utils/gen_groups.py` — renders `Utils/groups.json` (hand source: 38
+    modify-together groups ported from save-editor model semantics) into
+    `src/Groups.cs` for the F10 grouped widgets; rebuild the mod after.
+13. `Utils/gen_warnings.py` — per mapped key: dialogue gate list (op/value/
+    turn/conversation) + hand-curated danger rules → `src/Warnings.cs` for
+    the F10 `?` gate details and red TRIPPED lines; rebuild the mod after.
+13. `Utils/wiring_audit.py` — per save-editor GROUP field: resolve Lua keys
+    (FIELD_MAP + model composites + pair expansion, underscore-fallback),
+    verdict each (WIRED-content / WIRED-engine / DORMANT / STALE / MISMATCH)
+    → `.../mining/wiring_audit.json`. Current: 150 content, 18 engine, 0 flagged.
