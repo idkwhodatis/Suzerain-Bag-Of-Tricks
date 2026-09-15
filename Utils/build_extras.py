@@ -223,6 +223,8 @@ def main():
 
     gc_rows = []
     for k in sorted(k for k in uni if k.startswith("GameCondition.")):
+        if k in in_maps:
+            continue
         mark = "flips mid-campaign" if (k in set_s or k in set_r) else "static"
         gc_rows.append([k, f"story-gate flag ({mark}); true once beat available/completed — effect unconfirmed"])
     sections.append({"title": "Story gating — GameCondition.*",

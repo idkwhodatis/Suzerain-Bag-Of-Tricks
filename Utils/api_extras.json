@@ -15110,14 +15110,6 @@
      "story-gate flag (static); true once beat available/completed \u2014 effect unconfirmed"
     ],
     [
-     "GameCondition.Turn11_SnO_RumburgWarLost",
-     "story-gate flag (static); true once beat available/completed \u2014 effect unconfirmed"
-    ],
-    [
-     "GameCondition.Turn11_SnO_RumburgWarWin",
-     "story-gate flag (static); true once beat available/completed \u2014 effect unconfirmed"
-    ],
-    [
      "GameCondition.Turn11_SnO_WorldWar",
      "story-gate flag (static); true once beat available/completed \u2014 effect unconfirmed"
     ]

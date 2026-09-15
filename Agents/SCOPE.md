@@ -26,7 +26,7 @@
 
 ## Acceptance criteria
 
-- Fresh checkout + doc steps → Release DLL in `Suzerain/Mods/` → F10
+- Fresh checkout + doc steps → Release DLL in `Suzerain/Mods/` → Ctrl+D
   overlay opens in-game, lists live vars, set + preset actions visibly change
   HUD/state; F9 dump writes all catalog keys with live values.
 - `API.md` covers at least the save-editor key set with

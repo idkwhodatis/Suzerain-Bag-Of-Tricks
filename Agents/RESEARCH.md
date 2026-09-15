@@ -48,7 +48,7 @@ Never commit full decompiled game code.
   presence + runtime values). Diff against save-mined expectations to
   confirm rows in `Agents/API.md`.
 - Manual path: Ctrl+D overlay in menu (expect "GameFlowManager not loaded!")
-  then in a loaded campaign browse live vars; or F10 menu to flip a known
+  then in a loaded campaign browse live vars; or Ctrl+D menu to flip a known
   key (e.g. `BaseGame.GovernmentBudget`) and observe the HUD; revert.
 - Log keys present in-game but missing from FIELD_MAP → unknown-key list →
   resolve via dump context + turn/trigger notes → regenerate catalog.
@@ -116,9 +116,17 @@ live in `REPO`/`CONSTS` constants — edit when moving machines.
     -1000000000 live vs -999999999 in DB.
 11. `Utils/validate_api.py` — structural gate over `Agents/API.md`
     (column counts per table, stray-marker scan). Run after every regen.
+14. `Utils/dedup_audit.py` — fails loud on mapped/extras overlap or
+    cross-section duplicates → `.../mining/dedup_audit.json`.
 12. `Utils/gen_groups.py` — renders `Utils/groups.json` (hand source: 38
     modify-together groups ported from save-editor model semantics) into
-    `src/Groups.cs` for the F10 grouped widgets; rebuild the mod after.
+    `src/Groups.cs` for the menu grouped widgets; rebuild the mod after.
+13. `Utils/gen_menu.py` — renders save-editor group layout (same order) +
+    composite option data into `src/MenuGroups.cs` for pack pages with
+    collapsible categories; rebuild the mod after.
+14. `Utils/gen_strings.py` — UI string map (`menu.*`, `group.*`, humanized
+    `field.*`; proper nouns stay untouched for translators) into
+    `src/Strings.cs` with locale registry + fallback; rebuild the mod after.
 13. `Utils/gen_warnings.py` — per mapped key: dialogue gate list (op/value/
     turn/conversation) + hand-curated danger rules → `src/Warnings.cs` for
     the F10 `?` gate details and red TRIPPED lines; rebuild the mod after.
